@@ -63,7 +63,7 @@ export async function delete_demo(x_role) {
 
 }
 
-async function all() {
+export async function all() {
     let name = input("name\n")
     let lang = input("lang\n")
     let numbers = input("numbers\n")
@@ -71,11 +71,27 @@ async function all() {
     let ward = input("ward\n")
     let x_role = input("user\n")
     Promise.all([
-        get(name, lang),
-        post(numbers),
-        put(ward),
-        delete_demo(x_role)
+        await get(name, lang),
+        await post(numbers),
+        await put(ward),
+        await delete_demo(x_role)
     ])
 
 }
-all()
+export async function chaining() {
+    let name = input("name\n")
+    let lang = input("lang\n")
+    let numbers = input("numbers\n")
+    numbers = numbers.split(" ")
+    let ward = input("ward\n")
+    let x_role = input("user\n")
+    
+        await get(name, lang).
+        then(()=>{return post(numbers)}).
+        then(()=>{return put(ward)}).
+        then(()=>{return delete_demo(x_role)})
+       
+        
+    
+
+}

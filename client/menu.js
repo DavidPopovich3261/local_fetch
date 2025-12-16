@@ -1,7 +1,8 @@
-import { get,post,put,delete_demo} from "./funcurl.js";
+import { get,post,put,delete_demo,all,chaining} from "./funcurl.js";
 import input from "analiza-sync"
 
-while(true){
+let flag = true
+while(flag){
     let caches = input(`1. Generate a greeting\n2. Calculate the average\n3. Transform a word\n4. Delete a protected\n5. Call each server endpoint one after the other (in sequence)\n6. Call all server endpoints in parallel\n7. Exit\n`)
     switch (caches) {
         case "1":
@@ -27,10 +28,15 @@ while(true){
             break;
 
         case "5":
-
+            await chaining()
             break;
-    
-        default:
+
+        case "6":
+            await all()
+            break;
+
+        case "7":
+            flag = false
             break;
     }
     
